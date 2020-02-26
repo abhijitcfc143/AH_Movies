@@ -16,10 +16,6 @@ extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSour
         self.homeCollectionView.dataSource = self
         self.homeCollectionView.register(UINib(nibName: CollectionViewCellIds.movieCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: CollectionViewCellIds.movieCollectionViewCell)
         self.homeCollectionView.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewCellIds.searchBarCell)
-//        let layout = self.homeCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 2)
-//        layout.minimumInteritemSpacing = 0
-//        layout.itemSize = CGSize(width: 40, height: self.homeCollectionView.frame.height/2.5)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
