@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
     var finalArray = [HomeMoviesList]()
     let sectionInsets = UIEdgeInsets(top: 16.0, left: 8.0, bottom: 0.0, right: 4.0)
     let itemsPerRow: CGFloat = 2
+    var pageNumber = 1
+    
     var searchBar : UISearchBar = {
         let search = UISearchBar()
         search.placeholder = "Browse movies"
@@ -61,18 +63,20 @@ extension HomeViewController{
         let image = UIImage.fromColor(UIColor.black)
         self.navigationController?.navigationBar.setBackgroundImage(image, for: .default)
         self.hideShowActivityIndicatorView(show: true, activityIndicatorView: self.activityIndicatorView)
-        self.getHomeMovies()
+        self.getHomeMovies(page: self.pageNumber)
     }
     
     
-    func getHomeMovies(){
-        if let url = APIRoutes.homeAPI{
-            self.getMoviesHomeFeed(url: url) { (movies) in
+    func getHomeMovies(page : Int){
+        
+        if let urlWithPage = URL(string: "\(APIRoutes.homeAPI)&page=\(page)"){
+            self.getMoviesHomeFeed(url: urlWithPage) { (movies) in
                 DispatchQueue.main.async {
                     self.finalArray.append(contentsOf: movies)
                     self.homeCollectionView.reloadData()
                     self.hideShowActivityIndicatorView(show: false, activityIndicatorView: self.activityIndicatorView)
                     self.homeCollectionView.isHidden = false
+                    self.pageNumber = page + 1
                 }
             }
         }

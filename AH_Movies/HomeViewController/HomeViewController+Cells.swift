@@ -32,8 +32,12 @@ extension HomeViewController{
             }
         }
 
-        cell.cellAnimationFromTopToBottom(view: cell.contentView)
+//        cell.cellAnimationFromTopToBottom(view: cell.contentView)
         cell.layer.cornerRadius = 8.0
+        
+        if indexPath.row == self.finalArray.count - 1{
+            self.getHomeMovies(page: pageNumber)
+        }
         
         return cell
     }

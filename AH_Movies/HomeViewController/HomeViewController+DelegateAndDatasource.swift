@@ -65,7 +65,6 @@ extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewCellIds.searchBarCell, for: indexPath)
         headerCell.addSubview(self.searchBar)
-//        headerCell.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 8).isActive = true
         searchBar.trailingAnchor.constraint(equalTo: headerCell.trailingAnchor,constant: 0).isActive = true
         searchBar.leadingAnchor.constraint(equalTo: headerCell.leadingAnchor,constant: 0).isActive = true
         searchBar.bottomAnchor.constraint(equalTo: headerCell.bottomAnchor,constant: 8).isActive = true
@@ -77,7 +76,7 @@ extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSour
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         let filteredData = self.finalArray.filter { (homeMovie) -> Bool in
-            return homeMovie.title?.range(of: "\(searchBar.text!.trimmingCharacters(in: .whitespaces))") != nil
+            return (homeMovie.title?.contains(searchBar.text!.trimmingCharacters(in: .whitespaces)) ?? false)
         }
                 
         self.finalArray.removeAll()
@@ -86,8 +85,9 @@ extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSour
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
         self.finalArray.removeAll()
-        self.getHomeMovies()
+        self.getHomeMovies(page: 0)
     }
         
 }

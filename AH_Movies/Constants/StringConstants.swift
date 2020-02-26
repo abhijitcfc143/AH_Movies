@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct APIRoutes {
-    static let homeAPI = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(APIKey.apiKey)")
+    static let homeAPI = "https://api.themoviedb.org/3/movie/now_playing?api_key=\(APIKey.apiKey)"
     static let detailPageAPI = ""
     static var poster_pathAPI = "https://image.tmdb.org/t/p/w780"
     static var movieAPI = "https://api.themoviedb.org/3/movie/"
