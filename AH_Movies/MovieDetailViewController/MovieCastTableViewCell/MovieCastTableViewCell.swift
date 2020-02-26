@@ -12,6 +12,7 @@ class MovieCastTableViewCell: UITableViewCell {
 
     @IBOutlet weak var castCollectionView: UICollectionView!
     var castArray : [CastModel]?
+    var moviesArray : [HomeMoviesList]?
     
     let sectionInsets = UIEdgeInsets(top: 16.0, left: 8.0, bottom: 0.0, right: 4.0)
     let itemsPerRow: CGFloat = 3

@@ -52,6 +52,10 @@ extension MovieDetailViewController{
             dispatchGroup.leave()
         }
         
+        dispatchGroup.enter()
+        self.getRecommendationByMovieId {
+            dispatchGroup.leave()
+        }
         
         dispatchGroup.notify(queue: DispatchQueue.main) {
             self.sortFinalArrayBySectionIndex()
@@ -103,7 +107,7 @@ extension MovieDetailViewController{
                 self.getReview(url: finalUrl) { (reviews) in
                     if !reviews.isEmpty{
                         var dynamicSection = HomeSection()
-                        dynamicSection.sectionIndex = 2
+                        dynamicSection.sectionIndex = 3
                         dynamicSection.sectionTitle = "Reviews"
                         dynamicSection.arrays = reviews
                         self.fArray.append(dynamicSection)
@@ -137,6 +141,24 @@ extension MovieDetailViewController{
         }
     }
     
-    
-//    /recommendations
+    func getRecommendationByMovieId(completionHandler : @escaping ()->()) {
+        self.hideShowActivityIndicatorView(show: true, activityIndicatorView: self.activityIndicatorView)
+        
+        if let id = homeMovieObj?.id{
+            if let finalUrl = URL(string: "\(APIRoutes.movieAPI)\(id)/recommendations?api_key=\(APIKey.apiKey)"){
+                self.getRecommendedFeed(url: finalUrl) { (movies) in
+                                        
+                    if !movies.isEmpty{
+                        var dynamicSection = HomeSection()
+                        dynamicSection.sectionIndex = 2
+                        dynamicSection.sectionTitle = "You may also like"
+                        dynamicSection.arrays = movies
+                        self.fArray.append(dynamicSection)
+                    }
+                    self.hideShowActivityIndicatorView(show: false, activityIndicatorView: self.activityIndicatorView)
+                    completionHandler()
+                }
+            }
+        }
+    }
 }

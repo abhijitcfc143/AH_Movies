@@ -39,6 +39,11 @@ extension MovieDetailViewController : UITableViewDelegate,UITableViewDataSource{
                 if let castArrray = self.fArray[safe : section]?.arrays as? [CastModel],!castArrray.isEmpty{
                     return 1
                 }
+                
+                if let movieArrray = self.fArray[safe : section]?.arrays as? [HomeMoviesList],!movieArrray.isEmpty{
+                    return 1
+                }
+                
                 return arrayCount.count
             }
         }
@@ -60,6 +65,10 @@ extension MovieDetailViewController : UITableViewDelegate,UITableViewDataSource{
             return showMovieReviewTableViewCell(indexPath: indexPath)
         }
         
+        if let movieArrray = self.fArray[safe : indexPath.section]?.arrays as? [HomeMoviesList],!movieArrray.isEmpty{
+            return showMovieCastTableViewCell(indexPath: indexPath)
+        }
+        
         return UITableViewCell()
 
     }
@@ -78,6 +87,10 @@ extension MovieDetailViewController : UITableViewDelegate,UITableViewDataSource{
             return self.tableView.frame.width / 1.5
         }
         
+        if let movieArrray = self.fArray[safe : indexPath.section]?.arrays as? [HomeMoviesList],!movieArrray.isEmpty{
+            return self.tableView.frame.width / 1.5
+        }
+        
         return UITableView.automaticDimension
     }
     
@@ -90,6 +103,10 @@ extension MovieDetailViewController : UITableViewDelegate,UITableViewDataSource{
                     return 50
                 }
                 if let castArrray = self.fArray[safe : section]?.arrays as? [CastModel],!castArrray.isEmpty{
+                    return 50
+                }
+                
+                if let movieArrray = self.fArray[safe : section]?.arrays as? [HomeMoviesList],!movieArrray.isEmpty{
                     return 50
                 }
             }

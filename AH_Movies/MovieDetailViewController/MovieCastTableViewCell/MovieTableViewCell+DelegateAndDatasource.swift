@@ -24,7 +24,11 @@ extension MovieCastTableViewCell : UICollectionViewDelegate,UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let castAr = self.castArray,!castAr.isEmpty{
             return castAr.count
-        }        
+        }
+        if let moviesAr = self.moviesArray,!moviesAr.isEmpty{
+            return moviesAr.count
+        }
+        
         return 0
     }
     

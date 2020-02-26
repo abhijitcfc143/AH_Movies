@@ -101,6 +101,7 @@ extension MovieDetailViewController{
     func showMovieCastTableViewCell(indexPath : IndexPath) -> MovieCastTableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: TableViewCellIds.movieCastTableViewCell, for: indexPath) as! MovieCastTableViewCell
         cell.castArray = self.fArray[indexPath.section].arrays as? [CastModel]
+        cell.moviesArray = self.fArray[indexPath.section].arrays as? [HomeMoviesList]
         cell.setupDelegatesAndDatasource()
         cell.castCollectionView.reloadData()
         return cell
