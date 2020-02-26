@@ -36,6 +36,14 @@ extension MovieCastTableViewCell : UICollectionViewDelegate,UICollectionViewData
         return showMovieCastCharacterCollectionViewCell(indexPath: indexPath)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let castActorId = self.castArray?[indexPath.row].id{
+            NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.castClickedInCollectionView), object: nil, userInfo: ["actorId" : castActorId])
+        }else if let movieId = self.moviesArray?[indexPath.row].id{
+            NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.movieClickedInCollectionView), object: nil, userInfo: ["movieId" : movieId])
+        }                
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = self.castCollectionView.frame.width - paddingSpace

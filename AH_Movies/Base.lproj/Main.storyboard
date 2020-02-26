@@ -99,6 +99,36 @@
             </objects>
             <point key="canvasLocation" x="1809" y="100"/>
         </scene>
+        <!--Actor Details View Controller-->
+        <scene sceneID="sgE-xT-DtP">
+            <objects>
+                <viewController storyboardIdentifier="ActorDetailsViewController" id="KfN-Q5-rCd" customClass="ActorDetailsViewController" customModule="AH_Movies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="naI-0H-ROK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hEV-Cg-NaS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hL9-oM-63A" firstAttribute="trailing" secondItem="hEV-Cg-NaS" secondAttribute="trailing" id="GW9-tj-WQp"/>
+                            <constraint firstItem="hL9-oM-63A" firstAttribute="bottom" secondItem="hEV-Cg-NaS" secondAttribute="bottom" id="LLr-iI-FJL"/>
+                            <constraint firstItem="hEV-Cg-NaS" firstAttribute="leading" secondItem="hL9-oM-63A" secondAttribute="leading" id="T2P-Re-Fey"/>
+                            <constraint firstItem="hEV-Cg-NaS" firstAttribute="top" secondItem="hL9-oM-63A" secondAttribute="top" id="Xd9-oe-h3j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hL9-oM-63A"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="hEV-Cg-NaS" id="qdS-PD-Ef6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IC1-bi-gvL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2510" y="97"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="5g5-W7-Hnf">
             <objects>

@@ -14,12 +14,13 @@ struct APIRoutes {
     static let detailPageAPI = ""
     static var poster_pathAPI = "https://image.tmdb.org/t/p/w780"
     static var movieAPI = "https://api.themoviedb.org/3/movie/"
-    static var creditsAPI = "https://api.themoviedb.org/3/movie/454626/credits?api_key=facd1db4174f794ee4c5a8b3792e564b"
+    static var personAPI = "https://api.themoviedb.org/3/person/"
 }
 
 struct ViewControllerIDs {
     static let homeViewController = "HomeViewController"
     static let movieDetailViewController = "MovieDetailViewController"
+    static let actorDetailsViewController = "ActorDetailsViewController"
 }
 
 struct StoryboardIDs {
@@ -42,4 +43,9 @@ struct TableViewCellIds {
 
 struct APIKey {
     static let apiKey = "facd1db4174f794ee4c5a8b3792e564b"
+}
+
+struct NotificationNames {
+    static let castClickedInCollectionView = "castClickedInCollectionView"
+    static let movieClickedInCollectionView = "movieClickedInCollectionView"
 }

@@ -16,6 +16,9 @@ class MovieInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var movieReleaseDate: UILabel!
     @IBOutlet weak var movieGeners: UILabel!
     @IBOutlet weak var movieInfo: UILabel!
+    @IBOutlet weak var starHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var starWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var starImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

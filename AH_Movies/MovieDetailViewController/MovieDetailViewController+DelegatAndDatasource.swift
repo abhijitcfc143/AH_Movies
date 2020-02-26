@@ -22,6 +22,9 @@ extension MovieDetailViewController : UITableViewDelegate,UITableViewDataSource{
         self.tableView.register(UINib(nibName: TableViewCellIds.movieReviewTableViewCell, bundle: nil), forCellReuseIdentifier: TableViewCellIds.movieReviewTableViewCell)
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: TableViewCellIds.tableViewHeaderCell)
         self.tableView.register(UINib(nibName: TableViewCellIds.movieCastTableViewCell, bundle: nil), forCellReuseIdentifier: TableViewCellIds.movieCastTableViewCell)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.actorTapped(_:)), name: NSNotification.Name(rawValue: NotificationNames.castClickedInCollectionView), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.movieTapped(_:)), name: NSNotification.Name(rawValue: NotificationNames.movieClickedInCollectionView), object: nil)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -129,4 +132,35 @@ extension MovieDetailViewController : UITableViewDelegate,UITableViewDataSource{
         
         return UIView()
     }
+    
+    @objc func actorTapped(_ sender: Notification) {
+        if let actorId = sender.userInfo?["actorId"] as? Int{
+            self.getPersonById(actorId: actorId) { (actor) in
+                self.redirectToActorDetailsViewController(actor: actor, movie: nil)
+            }
+        }
+    }
+    
+    @objc func movieTapped(_ sender: Notification) {
+        if let movieId = sender.userInfo?["movieId"] as? Int{
+            self.getMovieById(id: movieId, homeId: nil) { (movie) in
+                self.redirectToActorDetailsViewController(actor: nil, movie: movie)
+            }
+        }
+    }
+    
+    
 }
+
+
+//MARK:- RedirectionsToViewControllers
+extension MovieDetailViewController{
+    
+    func redirectToActorDetailsViewController(actor : ActorModel?,movie : Movie?) {
+        let vc = StoryboardIDs.mainStoryboard.instantiateViewController(identifier: ViewControllerIDs.actorDetailsViewController) as! ActorDetailsViewController
+        vc.actor = actor
+        vc.movie = movie
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+

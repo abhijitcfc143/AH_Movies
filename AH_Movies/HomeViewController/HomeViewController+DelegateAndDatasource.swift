@@ -86,8 +86,9 @@ extension HomeViewController : UICollectionViewDelegate,UICollectionViewDataSour
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
+        searchBar.searchTextField.resignFirstResponder()
         self.finalArray.removeAll()
-        self.getHomeMovies(page: 0)
+        self.getHomeMovies(page: 1)
     }
         
 }

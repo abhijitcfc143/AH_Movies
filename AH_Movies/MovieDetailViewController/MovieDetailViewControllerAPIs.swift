@@ -85,4 +85,22 @@ extension MovieDetailViewController{
         }
     }
     
+    func getCastInfoByName(url : URL,actorId : Int,completionHandler : @escaping (ActorModel) ->()){
+        
+        url.asyncDownload { data, response, error in
+            guard let data = data else {
+                print("URLSession dataTask error:", error ?? "nil")
+                return
+            }
+            do{
+                let responseObject = try JSONDecoder().decode(ActorModel.self, from: data)
+                DispatchQueue.main.async(execute: { () -> Void in
+                    completionHandler(responseObject)
+                })
+            } catch {
+                print("JSONSerialization error:", error)
+            }
+        }
+    }
+    
 }

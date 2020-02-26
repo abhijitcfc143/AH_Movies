@@ -56,7 +56,7 @@
                                     <constraint firstAttribute="width" constant="20" id="fVL-0D-k53"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6a-MP-XDR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6a-MP-XDR">
                                 <rect key="frame" x="16" y="161" width="288" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -105,6 +105,9 @@
                 <outlet property="moviePosterImageView" destination="AMT-bG-i3c" id="VRG-KA-VYf"/>
                 <outlet property="movieRating" destination="UVo-qr-65f" id="HKJ-54-GqV"/>
                 <outlet property="movieReleaseDate" destination="vwy-O0-TPM" id="VRO-n2-Pam"/>
+                <outlet property="starHeightConstraint" destination="K1D-Uc-I8Z" id="Fhs-PH-uaz"/>
+                <outlet property="starImageView" destination="fYY-k6-Avv" id="S5u-Yb-kPn"/>
+                <outlet property="starWidthConstraint" destination="fVL-0D-k53" id="sdl-We-BqV"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="176.78571428571428"/>
         </tableViewCell>

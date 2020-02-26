@@ -38,7 +38,7 @@ extension MovieDetailViewController{
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
-        self.getMovieById {
+        self.getMovieById(id: nil, homeId: homeMovieObj?.id) { (_) in
             dispatchGroup.leave()
         }
         
@@ -76,11 +76,11 @@ extension MovieDetailViewController{
     }
     
     
-    func getMovieById(completionHandler : @escaping ()->()) {
-        self.tableView.isHidden = true
-        self.hideShowActivityIndicatorView(show: true, activityIndicatorView: self.activityIndicatorView)
-        if let id = homeMovieObj?.id{
-            if let finalUrl = URL(string: "\(APIRoutes.movieAPI)\(id)?api_key=\(APIKey.apiKey)"){
+    func getMovieById(id:Int?,homeId : Int?, completionHandler : @escaping (Movie)->()) {
+        if let homeId = homeId{
+            self.tableView.isHidden = true
+            self.hideShowActivityIndicatorView(show: true, activityIndicatorView: self.activityIndicatorView)
+            if let finalUrl = URL(string: "\(APIRoutes.movieAPI)\(homeId)?api_key=\(APIKey.apiKey)"){
                 self.getMovie(url: finalUrl) { (movie) in
                     DispatchQueue.main.async {
                         var dynamicSection = HomeSection()
@@ -93,11 +93,19 @@ extension MovieDetailViewController{
                         
                         dynamicSection.arrays = arr
                         self.fArray.append(dynamicSection)
-                        completionHandler()
+                        completionHandler(movie)
                     }
                 }
             }
-        }
+        }else if let id = id{
+            if let finalUrl = URL(string: "\(APIRoutes.movieAPI)\(id)?api_key=\(APIKey.apiKey)"){
+                self.getMovie(url: finalUrl) { (movie) in
+                    DispatchQueue.main.async {
+                        completionHandler(movie)
+                    }
+                }
+            }
+        }   
     }
     
     func getReviewsByMovieId(completionHandler : @escaping ()->()) {
@@ -158,6 +166,16 @@ extension MovieDetailViewController{
                     self.hideShowActivityIndicatorView(show: false, activityIndicatorView: self.activityIndicatorView)
                     completionHandler()
                 }
+            }
+        }
+    }
+    
+    func getPersonById(actorId : Int,completionHandler : @escaping (ActorModel)->()) {
+        self.hideShowActivityIndicatorView(show: true, activityIndicatorView: self.activityIndicatorView)
+        if let url = URL(string: "\(APIRoutes.personAPI)\(actorId)?api_key=\(APIKey.apiKey)") {
+            self.getCastInfoByName(url: url, actorId: actorId) { (actor) in
+                self.hideShowActivityIndicatorView(show: false, activityIndicatorView: self.activityIndicatorView)
+                completionHandler(actor)
             }
         }
     }

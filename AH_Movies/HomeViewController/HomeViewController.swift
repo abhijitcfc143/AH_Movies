@@ -40,12 +40,17 @@ class HomeViewController: UIViewController {
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
-        .lightContent
+        return .darkContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
     }
     
 }
@@ -83,3 +88,9 @@ extension HomeViewController{
     }
 }
 
+
+extension UINavigationController {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
