@@ -22,13 +22,16 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
 
         self.setupUI()
+        
     }
 }
 
 extension MovieDetailViewController{
     func setupUI() {
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-        self.navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
         if let movieName = homeMovieObj?.title{
             self.title = movieName
         }
@@ -105,7 +108,7 @@ extension MovieDetailViewController{
                     }
                 }
             }
-        }   
+        }
     }
     
     func getReviewsByMovieId(completionHandler : @escaping ()->()) {

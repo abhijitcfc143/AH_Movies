@@ -18,8 +18,8 @@ extension ActorDetailsViewController{
                 cell.moviePosterImageView.downloaded(from: "\(APIRoutes.poster_pathAPI)\(moviePoster)")
             }
             
-            if let movieName = actor.name{
-                cell.movieName.text = movieName
+            if let actorName = actor.name{
+                cell.movieName.text = actorName
             }else{
                 cell.movieName.text = ""
             }

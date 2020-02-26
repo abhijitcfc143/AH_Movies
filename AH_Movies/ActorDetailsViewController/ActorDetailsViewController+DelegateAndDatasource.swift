@@ -18,6 +18,13 @@ extension ActorDetailsViewController : UITableViewDelegate,UITableViewDataSource
         self.tableView.separatorStyle = .none
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.register(UINib(nibName: TableViewCellIds.movieInfoTableViewCell, bundle: nil), forCellReuseIdentifier: TableViewCellIds.movieInfoTableViewCell)
+        if let actorName = self.actor?.name{
+            self.title = actorName
+        }
+        
+        if let movieName = self.movie?.title{
+            self.title = movieName
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -62,6 +62,8 @@ extension HomeViewController{
         self.title = "Movies"
         self.searchBar.delegate = self
         self.searchBar.showsCancelButton = true
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         self.setupHomeCollectionViewDelegateAndDatasource()
         self.homeCollectionView.isHidden = true
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18.0)]
